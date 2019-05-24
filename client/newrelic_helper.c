@@ -1,5 +1,5 @@
 /*!
- * ex_common.c
+ * newrelic_helper.c
  *
  * @brief Common function implementations for New Relic C SDK example code.
  *
@@ -9,7 +9,7 @@
 #include <string.h>
 #include <sys/time.h>
 
-#include "common.h"
+#include "newrelic_helper.h"
 
 /*
  * @brief Customize a configuration

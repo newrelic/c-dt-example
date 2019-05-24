@@ -17,7 +17,7 @@ int main(void) {
   char fullHeader[1000];
   newrelic_external_segment_params_t params = {
       .procedure = "GET",
-      .uri = "localhost:8888/test",
+      .uri = "localhost:8080/test",
   };
   struct curl_slist* list = NULL;
   newrelic_segment_t* segment = 0;
@@ -69,13 +69,9 @@ int main(void) {
   }
   sprintf(fullHeader, "newrelic: %s", headers);
   list = curl_slist_append(list, fullHeader);
-  curl_easy_setopt(curl, CURLOPT_URL, "localhost:8888/test");
+  curl_easy_setopt(curl, CURLOPT_URL, "localhost:8080/");
   res = curl_easy_setopt(curl, CURLOPT_HTTPHEADER, list);
 
-  res = curl_easy_perform(curl);
-  res = curl_easy_perform(curl);
-  res = curl_easy_perform(curl);
-  res = curl_easy_perform(curl);
   res = curl_easy_perform(curl);
 
   newrelic_end_segment(txn, &segment);
@@ -87,6 +83,7 @@ int main(void) {
   curl_easy_cleanup(curl);
 
   newrelic_destroy_app(&app);
+  free(headers);
 
   return 0;
 }

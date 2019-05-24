@@ -6,7 +6,7 @@
 # locations:
 
 LIBNEWRELIC_A_LOCATION = ..
-LIBNEWRELIC_H_LOCATION = ../include
+LIBNEWRELIC_H_LOCATION = ../.
 
 # Pull in PCRE config.
 PCRE_CFLAGS := $(shell pcre-config --cflags)
