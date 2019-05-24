@@ -21,7 +21,7 @@
  */
 bool customize_config(newrelic_app_config_t** config_ptr) {
   if (NULL != config_ptr && NULL != *config_ptr) {
-    char* collector = getenv("NEW_RELIC_HOST");
+    char* collector = getenv("CLIENT_NEW_RELIC_HOST");
     newrelic_app_config_t* config = *config_ptr;
 
     if (NULL != collector) {
@@ -48,16 +48,16 @@ bool example_init(void) {
  * @brief Get the New Relic application name from environment,
  * NEW_RELIC_APP_NAME.
  *
- * @return A pointer to the environment variable NEW_RELIC_APP_NAME; NULL if it
+ * @return A pointer to the environment variable CLIENT_AGENT_APP_NAME; NULL if it
  * is not defined.
  */
 char* get_app_name(void) {
-  char* app_name = getenv("NEW_RELIC_APP_NAME");
+  char* app_name = getenv("CLIENT_AGENT_APP_NAME");
 
   if (NULL == app_name) {
     printf(ENV_NOTICE);
     printf(
-        "\nEnvironment variable NEW_RELIC_APP_NAME must be set to a meaningful "
+        "\nEnvironment variable CLIENT_AGENT_APP_NAME must be set to a meaningful "
         "application name.\n");
   }
 
@@ -65,18 +65,18 @@ char* get_app_name(void) {
 }
 
 /*!
- * @brief Get the New Relic license key from environment, NEW_RELIC_LICENSE_KEY.
+ * @brief Get the New Relic license key from environment, CLIENT_NEW_RELIC_LICENSE_KEY.
  *
  * @return A pointer to the environment variable NEW_RELIC_LICENSE_KEY; NULL if
  * it is not defined.
  */
 char* get_license_key(void) {
-  char* license_key = getenv("NEW_RELIC_LICENSE_KEY");
+  char* license_key = getenv("CLIENT_NEW_RELIC_LICENSE_KEY");
 
   if (NULL == license_key) {
     printf(ENV_NOTICE);
     printf(
-        "\nEnvironment variable NEW_RELIC_LICENSE_KEY must be set to a valid "
+        "\nEnvironment variable CLIENT_NEW_RELIC_LICENSE_KEY must be set to a valid "
         "New "
         "Relic license key.\n");
   }

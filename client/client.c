@@ -47,6 +47,7 @@ int main(void) {
   /* Change the transaction tracer threshold to ensure a trace is generated */
   config->transaction_tracer.threshold = NEWRELIC_THRESHOLD_IS_OVER_DURATION;
   config->transaction_tracer.duration_us = 1;
+  config->distributed_tracing.enabled = 1;
 
   /* Wait up to 10 seconds for the SDK to connect to the daemon */
   app = newrelic_create_app(config, 10000);
@@ -56,17 +57,16 @@ int main(void) {
   txn = newrelic_start_web_transaction(app, "ExampleWebTransaction");
   root_segment = newrelic_start_segment(txn, "parent", NULL);
 
-  /* Fake a web request by sleeping for one second. In a more typical
-   * instrumentation scenario the start() and stop() calls for the external
-   * segment would be before and after code performing an HTTP or SOAP
-   * operation, for example. */
+  /* Start an external segment */
   segment = newrelic_start_external_segment(txn, &params);
 
+  /* Create a distributed trace payload */
   headers = newrelic_create_distributed_trace_payload_httpsafe(txn, NULL);
   if (!headers) {
     printf("no headers");
     return 1;
   }
+  /* New Relic products look for distributed trace payload headers under newrelic keys */
   sprintf(fullHeader, "newrelic: %s", headers);
   list = curl_slist_append(list, fullHeader);
   curl_easy_setopt(curl, CURLOPT_URL, "localhost:8080/test");
