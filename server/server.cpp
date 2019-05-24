@@ -1,8 +1,3 @@
-#include <future>
-#include <iostream>
-#include <set>
-#include <string>
-
 #include "../libnewrelic.h"
 
 #include "vendor/httplib.h"
