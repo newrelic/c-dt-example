@@ -86,6 +86,7 @@ string get_payload(const Request& req) {
   }
 }
 
+/* Find the newrelic distributed trace payload */
 void accept_payload(const Request& req, newrelic_txn_t* txn) {
   string payload;
 
