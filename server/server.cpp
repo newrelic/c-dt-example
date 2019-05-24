@@ -3,16 +3,17 @@
 #include <set>
 #include <string>
 
-#include "httplib.h"
-
-#ifdef USE_NEWRELIC
 #include "../libnewrelic.h"
-#endif /* USE_NEWRELIC */
+
+#include "vendor/httplib.h"
+#include "vendor/json.hpp"
+#include "vendor/base64.cpp"
+
 
 using namespace httplib;
 using namespace std;
+using json = nlohmann::json;
 
-#ifdef USE_NEWRELIC
 static newrelic_app_t *app;
 int call_count;
 
@@ -74,10 +75,31 @@ bool setup_newrelic() {
 
   return true;
 }
-#endif /* USE_NEWRELIC */
 
-#ifdef USE_NEWRELIC
-void call_all(const Request &req) {
+string get_payload(const Request& req) {
+  if (req.has_header("newrelic")) {
+    return req.get_header_value("newrelic");
+  } else if (req.has_header("Newrelic")) {
+    return req.get_header_value("Newrelic");
+  } else {
+    throw runtime_error("No payload received");
+  }
+}
+
+void accept_payload(const Request& req, newrelic_txn_t* txn) {
+  string payload;
+
+  try {
+    payload = get_payload(req);
+  } catch (exception& e) {
+    return;
+  }
+
+  newrelic_accept_distributed_trace_payload_httpsafe(
+          txn, payload.c_str(), NEWRELIC_TRANSPORT_TYPE_HTTP);
+}
+
+void handle_request(const Request& req) {
   newrelic_txn_t* txn = newrelic_start_web_transaction(app, "Example");
 
   newrelic_external_segment_params_t external_params;
@@ -86,26 +108,21 @@ void call_all(const Request &req) {
 
   newrelic_segment_t *ex_segment =
       newrelic_start_external_segment(txn, &external_params);
+  accept_payload(req, txn);
   newrelic_end_segment(txn, &ex_segment);
 
   newrelic_end_transaction(&txn);
 }
-#endif /* USE_NEWRELIC */
 
 int main(void) {
-#ifdef USE_NEWRELIC
   if (!setup_newrelic()) {
     return 1;
   }
-#endif /* USE_NEWRELIC */
 
   Server svr;
 
-  svr.Get("/run", [](const Request &req, Response &res) {
-#ifdef USE_NEWRELIC
-    call_all(req);
-#endif /* USE_NEWRELIC */
-    res.set_content("Success", "text/plain");
+  svr.Get(R"(/test)", [](const Request &req, Response &res) {
+    handle_request(req);
   });
 
   svr.listen("localhost", 8080);

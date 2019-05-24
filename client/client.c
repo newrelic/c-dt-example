@@ -69,7 +69,7 @@ int main(void) {
   }
   sprintf(fullHeader, "newrelic: %s", headers);
   list = curl_slist_append(list, fullHeader);
-  curl_easy_setopt(curl, CURLOPT_URL, "localhost:8080/");
+  curl_easy_setopt(curl, CURLOPT_URL, "localhost:8080/test");
   res = curl_easy_setopt(curl, CURLOPT_HTTPHEADER, list);
 
   res = curl_easy_perform(curl);

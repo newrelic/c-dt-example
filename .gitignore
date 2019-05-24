@@ -56,4 +56,7 @@ libnewrelic.*
 
 # Build directory
 server/build
+.idea
 
+# Agent logs
+c_sdk.log
