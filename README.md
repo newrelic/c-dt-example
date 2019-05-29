@@ -13,13 +13,13 @@ and instrumented with a New Relic agent.
 
 ### Building and running the server
 
-The server will require the following environment variables and there are no defaults.
+The server will require the following environment variables.
 
-|       Var Name       | Description |
-| -------------------- | ----------- |
-| SERVER_NEW_RELIC_LICENSE_KEY | The New Relic License Key. | 
-| SERVER_NEW_RELIC_HOST | New Relic collector host. If NULL will be set to the default of collector.newrelic.com |
-| SERVER_AGENT_APP_NAME | The New Relic app name that will appear in the UI. |
+|       Var Name       | Description | Required |
+| -------------------- | ----------- | ------------- |
+| SERVER_NEW_RELIC_LICENSE_KEY | The New Relic License Key. | Required |
+| SERVER_NEW_RELIC_HOST | New Relic collector host. If NULL will be set to the default of collector.newrelic.com | Not required |
+| SERVER_AGENT_APP_NAME | The New Relic app name that will appear in the UI. | Required |
 
 Run the following commands to build the server application.
 
@@ -33,15 +33,15 @@ Run the following commands to build the server application.
 
 ## The client application
 
-### Building and running the cerver
+### Building and running the client
 
 The client will require the following environment variables and there are no defaults.
 
-|       Var Name       | Description |
-| -------------------- | ----------- |
-| CLIENT_NEW_RELIC_LICENSE_KEY | The New Relic License Key. | 
-| CLIENT_NEW_RELIC_HOST | New Relic collector host. If NULL will be set to the default of collector.newrelic.com |
-| CLIENT_NEW_RELIC_APP_NAME | The New Relic app name that will appear in the UI. |
+|       Var Name       | Description | Required |
+| -------------------- | ----------- | -------- | 
+| CLIENT_NEW_RELIC_LICENSE_KEY | The New Relic License Key. | Required | 
+| CLIENT_NEW_RELIC_HOST | New Relic collector host. If NULL will be set to the default of collector.newrelic.com | Not Required |
+| CLIENT_NEW_RELIC_APP_NAME | The New Relic app name that will appear in the UI. | Required |
 
 Run the following commands to build the client application.
 

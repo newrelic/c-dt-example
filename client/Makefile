@@ -12,7 +12,7 @@ LIBNEWRELIC_H_LOCATION = ../.
 PCRE_CFLAGS := $(shell pcre-config --cflags)
 PCRE_LIBS := $(shell pcre-config --libs)
 
-# Librarys
+# Libraries
 LDLIBS = -lcurl
 
 EXAMPLES := client.out

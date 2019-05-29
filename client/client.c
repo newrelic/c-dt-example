@@ -21,7 +21,8 @@ int main(void) {
   CURL* curl = curl_easy_init();
 
   if (!curl) {
-    return 1;
+    printf("Curl init failed, exiting");
+    return -1;
   }
 
   example_init();
@@ -58,10 +59,10 @@ int main(void) {
   /* Create a distributed trace payload */
   headers = newrelic_create_distributed_trace_payload_httpsafe(txn, NULL);
   if (!headers) {
-    printf("no headers");
+    printf("newrelic_create_distributed_trace_payload_httpsafe failed, exiting");
     return 1;
   }
-  /* New Relic products look for distributed trace payload headers under newrelic keys */
+  /* New Relic products look for distributed trace payload with the header name 'newrelic'. */
   sprintf(fullHeader, "newrelic: %s", headers);
   list = curl_slist_append(list, fullHeader);
   curl_easy_setopt(curl, CURLOPT_URL, "localhost:8080/test");
