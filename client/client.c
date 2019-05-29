@@ -40,9 +40,7 @@ int main(void) {
   config->distributed_tracing.enabled = true;
   customize_config(&config);
 
-  /* Change the transaction tracer threshold to ensure a trace is generated */
-  config->transaction_tracer.threshold = NEWRELIC_THRESHOLD_IS_OVER_DURATION;
-  config->transaction_tracer.duration_us = 1;
+  /* Turn on distributed tracing */
   config->distributed_tracing.enabled = 1;
 
   /* Wait up to 10 seconds for the SDK to connect to the daemon */

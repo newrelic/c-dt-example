@@ -48,11 +48,11 @@ bool example_init(void) {
  * @brief Get the New Relic application name from environment,
  * NEW_RELIC_APP_NAME.
  *
- * @return A pointer to the environment variable CLIENT_AGENT_APP_NAME; NULL if it
+ * @return A pointer to the environment variable CLIENT_NEW_RELIC_APP_NAME; NULL if it
  * is not defined.
  */
 char* get_app_name(void) {
-  char* app_name = getenv("CLIENT_AGENT_APP_NAME");
+  char* app_name = getenv("CLIENT_NEW_RELIC_APP_NAME");
 
   if (NULL == app_name) {
     printf(ENV_NOTICE);
