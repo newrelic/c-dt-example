@@ -1,5 +1,8 @@
 # C Distributed Tracing Example
 
+*This is an unsupported example.* This project is provided AS-IS WITHOUT
+WARRANTY OR SUPPORT.
+
 This repository contains two example application, used to 
 illustrate instrumenting an application with the New Relic 
 C SDK. The two applications are a client app written in C 
