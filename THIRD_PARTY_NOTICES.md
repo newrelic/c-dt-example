@@ -20,7 +20,7 @@ can be found at https://github.com/newrelic/c-sdk/.
 ## JSON for Modern C++
 
 This product includes source derived from
-[JSON for Modern C++](http://nlohmann.me), distributed under the
+[JSON for Modern C++](https://github.com/nlohmann/json), distributed under the
 [MIT License](http://opensource.org/licenses/MIT):
 
 ```
