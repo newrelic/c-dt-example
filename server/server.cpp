@@ -1,28 +1,25 @@
 #include "../libnewrelic.h"
 
 #include "vendor/httplib.h"
-#include "vendor/json.hpp"
-#include "vendor/base64.cpp"
-
+#include <iostream>
 
 using namespace httplib;
 using namespace std;
-using json = nlohmann::json;
 
 static newrelic_app_t *app;
 int call_count;
 
 bool setup_newrelic() {
-  char *license_key = getenv("SERVER_NEW_RELIC_LICENSE_KEY");
+  char *license_key = getenv("NEW_RELIC_LICENSE_KEY");
 
   call_count = 0;
 
   if (!license_key) {
-    cout << "SERVER_NEW_RELIC_LICENSE_KEY not set." << endl;
+    cout << "NEW_RELIC_LICENSE_KEY not set." << endl;
     return false;
   }
 
-  char *collector = getenv("SERVER_NEW_RELIC_HOST");
+  char *collector = getenv("NEW_RELIC_HOST");
 
   if (!collector) {
     collector = NULL;
@@ -40,7 +37,7 @@ bool setup_newrelic() {
 
   char *app_name = getenv("SERVER_AGENT_APP_NAME");
   if (!app_name) {
-    cout << "AGENT_APP_NAME not set" << endl;
+    cout << "SERVER_AGENT_APP_NAME not set" << endl;
     return false;
   }
 
@@ -52,9 +49,7 @@ bool setup_newrelic() {
     return false;
   }
 
-  /* Change the transaction tracer threshold to ensure a trace is generated */
-  config->transaction_tracer.threshold = NEWRELIC_THRESHOLD_IS_OVER_DURATION;
-  config->transaction_tracer.duration_us = 0;
+  /* Turn on distributed tracing */
   config->distributed_tracing.enabled = 1;
 
   strcpy(config->redirect_collector, collector);

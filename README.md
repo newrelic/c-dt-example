@@ -12,6 +12,11 @@ trace payload. Either of these application can be replaced with
 an application written in an other New Relic supported language
 and instrumented with a New Relic agent. 
 
+## Requirements
+
+* gcc 4.9 or greater 
+* CMake 3.0 or greater
+
 ## The server application
 
 ### Building and running the server
@@ -20,8 +25,8 @@ The server will require the following environment variables.
 
 |       Var Name       | Description | Required |
 | -------------------- | ----------- | ------------- |
-| SERVER_NEW_RELIC_LICENSE_KEY | The New Relic License Key. | Required |
-| SERVER_NEW_RELIC_HOST | New Relic collector host. If NULL will be set to the default of collector.newrelic.com | Not required |
+| NEW_RELIC_LICENSE_KEY | The New Relic License Key. | Required |
+| NEW_RELIC_HOST | New Relic collector host. If NULL will be set to the default of collector.newrelic.com | Not required |
 | SERVER_AGENT_APP_NAME | The New Relic app name that will appear in the UI. | Required |
 
 Run the following commands to build the server application.
@@ -32,6 +37,7 @@ Run the following commands to build the server application.
 1. Copy `libnewrelic.h` to this projects root directory.
 1. `cmake .`
 1. `make`
+1. Follow the directions in the [C SDK repo](https://github.com/newrelic/c-sdk/blob/master/GUIDE.md#getting-started) to start the New Relic daemon.
 1. `./server`
 
 ## The client application
@@ -42,8 +48,8 @@ The client will require the following environment variables and there are no def
 
 |       Var Name       | Description | Required |
 | -------------------- | ----------- | -------- | 
-| CLIENT_NEW_RELIC_LICENSE_KEY | The New Relic License Key. | Required | 
-| CLIENT_NEW_RELIC_HOST | New Relic collector host. If NULL will be set to the default of collector.newrelic.com | Not Required |
+| NEW_RELIC_LICENSE_KEY | The New Relic License Key. | Required | 
+| NEW_RELIC_HOST | New Relic collector host. If NULL will be set to the default of collector.newrelic.com | Not Required |
 | CLIENT_NEW_RELIC_APP_NAME | The New Relic app name that will appear in the UI. | Required |
 
 Run the following commands to build the client application.
@@ -51,4 +57,5 @@ Run the following commands to build the client application.
 1. Clone and compile the C SDK, there are more instructions [here](https://github.com/newrelic/c-sdk).
 1. Copy `libnewrelic.h` and `libnewrelic.a` to this projects root directory.
 1. `make`
+1. Follow the directions in the [C SDK repo](https://github.com/newrelic/c-sdk/blob/master/GUIDE.md#getting-started) to start the New Relic daemon.
 1. `./client.out`
