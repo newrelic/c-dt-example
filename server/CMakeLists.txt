@@ -1,5 +1,10 @@
+#
+# CMakeLists for the New Relic C Distributed Trace Example
+#
+
+# The CMakeLists presumes that libnewrelic.so is in the this directory.
+
 cmake_minimum_required (VERSION 3.0)
-set (CMAKE_CXX_STANDARD 17)
 find_package (Threads)
 
 add_definitions(-DUSE_NEWRELIC)

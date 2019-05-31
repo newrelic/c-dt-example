@@ -1,5 +1,5 @@
 #
-# Makefile for New Relic C SDK Code Examples
+# Makefile for New Relic C Distributed Trace Example
 #
 
 # This Makefile presumes that libnewrelic.h and libnewrelic.a are at the following

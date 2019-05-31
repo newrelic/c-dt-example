@@ -1,7 +1,7 @@
 # C Distributed Tracing Example
 
-*This is an unsupported example.* This project is provided AS-IS WITHOUT
-WARRANTY OR SUPPORT.
+**This is an unsupported example. This project is provided AS-IS WITHOUT
+WARRANTY OR SUPPORT.**
 
 This repository contains two example application, used to 
 illustrate instrumenting an application with the New Relic 
@@ -16,6 +16,8 @@ and instrumented with a New Relic agent.
 
 * gcc 4.9 or greater 
 * CMake 3.0 or greater
+* g++ 7.3.1 or greater
+* curl 7.29 or greater
 
 ## The server application
 
@@ -27,7 +29,7 @@ The server will require the following environment variables.
 | -------------------- | ----------- | ------------- |
 | NEW_RELIC_LICENSE_KEY | The New Relic License Key. | Required |
 | NEW_RELIC_HOST | New Relic collector host. If NULL will be set to the default of collector.newrelic.com | Not required |
-| SERVER_AGENT_APP_NAME | The New Relic app name that will appear in the UI. | Required |
+| SERVER_NEW_RELIC_APP_NAME | The New Relic app name that will appear in the UI. | Required |
 
 Run the following commands to build the server application.
 

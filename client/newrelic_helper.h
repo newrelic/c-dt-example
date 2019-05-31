@@ -1,5 +1,5 @@
 /*!
- * @file common.h
+ * @file newrelic_helper.h
  *
  * @brief Common constants and function declarations for New Relic C SDK
  * example code.
@@ -17,7 +17,7 @@ extern "C" {
 #define NEWRELIC_MS_PER_SEC (1000000)
 
 #define ENV_NOTICE                                                             \
-  ("This example program depends on environment variables NEW_RELIC_APP_NAME " \
+  ("This example program depends on environment variables CLIENT_NEW_RELIC_APP_NAME " \
    "and NEW_RELIC_LICENSE_KEY.")
 
 /* Common function declarations */
@@ -25,7 +25,6 @@ bool customize_config(newrelic_app_config_t** config_ptr);
 bool example_init(void);
 char* get_app_name(void);
 char* get_license_key(void);
-newrelic_time_us_t now_us(void);
 
 #ifdef __cplusplus
 }

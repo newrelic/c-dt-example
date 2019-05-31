@@ -35,9 +35,9 @@ bool setup_newrelic() {
     return false;
   }
 
-  char *app_name = getenv("SERVER_AGENT_APP_NAME");
+  char *app_name = getenv("SERVER_NEW_RELIC_APP_NAME");
   if (!app_name) {
-    cout << "SERVER_AGENT_APP_NAME not set" << endl;
+    cout << "SERVER_NEW_RELIC_APP_NAME not set" << endl;
     return false;
   }
 

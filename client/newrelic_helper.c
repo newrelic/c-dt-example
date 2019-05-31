@@ -7,7 +7,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <sys/time.h>
 
 #include "newrelic_helper.h"
 
@@ -46,7 +45,7 @@ bool example_init(void) {
 
 /*!
  * @brief Get the New Relic application name from environment,
- * NEW_RELIC_APP_NAME.
+ * CLIENT_NEW_RELIC_APP_NAME.
  *
  * @return A pointer to the environment variable CLIENT_NEW_RELIC_APP_NAME; NULL if it
  * is not defined.
@@ -82,19 +81,4 @@ char* get_license_key(void) {
   }
 
   return license_key;
-}
-
-/*!
- * @brief Get the current time.
- *
- * @return The current time in microseconds since the UNIX Epoch.
- */
-newrelic_time_us_t now_us(void) {
-  struct timeval tv;
-  newrelic_time_us_t ret;
-
-  (void)gettimeofday(&tv, 0);
-  ret = tv.tv_sec * NEWRELIC_MS_PER_SEC;
-  ret = ret + tv.tv_usec;
-  return ret;
 }
