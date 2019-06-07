@@ -7,8 +7,6 @@
 cmake_minimum_required (VERSION 3.0)
 find_package (Threads)
 
-add_definitions(-DUSE_NEWRELIC)
-
 link_directories (../.)
 
 add_executable (server server.cpp)
