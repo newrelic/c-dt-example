@@ -36,10 +36,9 @@ Run the following commands to build the server application.
 1. Clone and compile the C SDK, there are more instructions [here](https://github.com/newrelic/c-sdk).
     1. Use the `make dynamic` command to create the `libnewrelic.so`
 1. Copy `libnewrelic.so` to the server/ directory.
-    1. The `CMakeLists.txt` is setup for linux. To compile the server on a mac the following line will need to be changed from: 
-    ```target_link_libraries (server libnewrelic.so ${CMAKE_THREAD_LIBS_INIT}```
-    To: 
-    ```target_link_libraries (server ${CMAKE_SOURCE_DIR}/libnewrelic.so ${CMAKE_THREAD_LIBS_INIT}```
+    1. The `CMakeLists.txt` is setup for linux. To compile the server on a mac the following line will need to be changed 
+    from: `target_link_libraries (server libnewrelic.so ${CMAKE_THREAD_LIBS_INIT}`
+    to: `target_link_libraries (server ${CMAKE_SOURCE_DIR}/libnewrelic.so ${CMAKE_THREAD_LIBS_INIT}`
 1. Copy `libnewrelic.h` to this projects root directory.
 1. `cmake .`
 1. `make`
