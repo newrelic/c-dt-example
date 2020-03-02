@@ -56,7 +56,7 @@ char* get_app_name(void) {
   if (NULL == app_name) {
     printf(ENV_NOTICE);
     printf(
-        "\nEnvironment variable CLIENT_AGENT_APP_NAME must be set to a meaningful "
+        "\nEnvironment variable CLIENT_NEW_RELIC_APP_NAME must be set to a meaningful "
         "application name.\n");
   }
 
